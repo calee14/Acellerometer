@@ -316,6 +316,7 @@
 				B35A27EB1EFD7BCE009DCC9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
