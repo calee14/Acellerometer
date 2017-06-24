@@ -11,10 +11,15 @@ import GameplayKit
 import CoreMotion
 import Foundation
 
+enum Direction {
+    case up, down
+}
+
 class GameScene: SKScene {
     
     let motionManager = CMMotionManager()
     var spaceShip: SKSpriteNode!
+    var dir: Direction!
     
     override func didMove(to view: SKView) {
         
@@ -31,19 +36,30 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
-        if spaceShip.position.x < 59 {
-            borders(side: "left")
+        if let data = motionManager.accelerometerData {
+            if data.acceleration.z < 0 {
+                dir = .up
+            } else if data.acceleration.z > 0 {
+                dir = .down
+            }
         }
-        if spaceShip.position.x > 690 {
-            borders(side: "right")
+        
+        if let data = motionManager.accelerometerData {
+            print(data)
         }
         
         if let data = motionManager.accelerometerData {
             print("turbines to speed")
-            spaceShip.physicsBody?.applyForce(CGVector(dx: 300 * CGFloat(data.acceleration.x), dy: 0))
+            spaceShip.physicsBody?.applyForce(CGVector(dx: 0, dy: -1000 * CGFloat(data.acceleration.z)))
             print(data.acceleration.x)
         }
         
+        if spaceShip.position.y < 59 {
+            borders(side: "down")
+        }
+        if spaceShip.position.y > 250 {
+            borders(side: "up")
+        }
     }
     
     func stopUpdates() {
@@ -52,10 +68,10 @@ class GameScene: SKScene {
     }
     
     func borders(side: String) {
-        if side == "left" {
-            spaceShip.position.x = 59
-        } else if side == "right" {
-            spaceShip.position.x = 690
+        if side == "down" {
+            spaceShip.position.y = 59
+        } else if side == "up" {
+            spaceShip.position.y = 250
         }
         
     }
