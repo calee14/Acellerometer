@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B322191B1F018FE600737F6D /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B322191A1F018FE600737F6D /* CGFloat+Extensions.swift */; };
 		B35A27D51EFD7BCE009DCC9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35A27D41EFD7BCE009DCC9B /* AppDelegate.swift */; };
 		B35A27D71EFD7BCE009DCC9B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B35A27D61EFD7BCE009DCC9B /* GameScene.sks */; };
 		B35A27D91EFD7BCE009DCC9B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = B35A27D81EFD7BCE009DCC9B /* Actions.sks */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B322191A1F018FE600737F6D /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		B35A27D11EFD7BCE009DCC9B /* Acellerometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acellerometer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B35A27D41EFD7BCE009DCC9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B35A27D61EFD7BCE009DCC9B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				B35A27D81EFD7BCE009DCC9B /* Actions.sks */,
 				B35A27DA1EFD7BCE009DCC9B /* GameScene.swift */,
 				B35A27DC1EFD7BCE009DCC9B /* GameViewController.swift */,
+				B322191A1F018FE600737F6D /* CGFloat+Extensions.swift */,
 				B35A27DE1EFD7BCE009DCC9B /* Main.storyboard */,
 				B35A27E11EFD7BCE009DCC9B /* Assets.xcassets */,
 				B35A27E31EFD7BCE009DCC9B /* LaunchScreen.storyboard */,
@@ -150,6 +153,7 @@
 			files = (
 				B35A27DB1EFD7BCE009DCC9B /* GameScene.swift in Sources */,
 				B35A27DD1EFD7BCE009DCC9B /* GameViewController.swift in Sources */,
+				B322191B1F018FE600737F6D /* CGFloat+Extensions.swift in Sources */,
 				B35A27D51EFD7BCE009DCC9B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

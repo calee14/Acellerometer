@@ -19,11 +19,12 @@ class GameScene: SKScene {
     
     let motionManager = CMMotionManager()
     var spaceShip: SKSpriteNode!
-    var dir: Direction!
+    var dir: Direction = .up
     
     override func didMove(to view: SKView) {
         
         motionManager.startAccelerometerUpdates()
+        motionManager.accelerometerUpdateInterval = 0.1
         print("starting up the acceleromter")
         
         spaceShip = self.childNode(withName: "node") as! SKSpriteNode
@@ -35,31 +36,15 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+       
+        spaceShip.position.x.clamp(v1: 0, 543.6)
+        spaceShip.position.y.clamp(v1: 0, 289.6)
         
-        if let data = motionManager.accelerometerData {
-            if data.acceleration.z < 0 {
-                dir = .up
-            } else if data.acceleration.z > 0 {
-                dir = .down
-            }
-        }
+        print("turbines to speed")
+        guard let data = motionManager.accelerometerData else { return }
         
-        if let data = motionManager.accelerometerData {
-            print(data)
-        }
-        
-        if let data = motionManager.accelerometerData {
-            print("turbines to speed")
-            spaceShip.physicsBody?.applyForce(CGVector(dx: 0, dy: -1000 * CGFloat(data.acceleration.z)))
-            print(data.acceleration.x)
-        }
-        
-        if spaceShip.position.y < 59 {
-            borders(side: "down")
-        }
-        if spaceShip.position.y > 250 {
-            borders(side: "up")
-        }
+        spaceShip.physicsBody?.applyForce(CGVector(dx: 500 * CGFloat(data.acceleration.y), dy: -500 * CGFloat(data.acceleration.x)))
+        print("other \(data)")
     }
     
     func stopUpdates() {
@@ -76,3 +61,4 @@ class GameScene: SKScene {
         
     }
 }
+
