@@ -23,6 +23,11 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        //Creates a border the size of the frame
+        let border = SKPhysicsBody(edgeLoopFrom: self.frame)
+        border.friction = 0
+        //self.physicsBody = border
+        
         motionManager.startAccelerometerUpdates()
         motionManager.accelerometerUpdateInterval = 0.1
         print("starting up the acceleromter")
@@ -36,29 +41,38 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-       
-        spaceShip.position.x.clamp(v1: 0, 543.6)
-        spaceShip.position.y.clamp(v1: 0, 289.6)
+        
+        //Warp thingy
+        warpy()
+        
+        //Clamp speed
+        spaceShip.physicsBody?.velocity.dx.clamp(v1: -400, 400)
+        spaceShip.physicsBody?.velocity.dy.clamp(v1: -400, 400)
         
         print("turbines to speed")
         guard let data = motionManager.accelerometerData else { return }
         
-        spaceShip.physicsBody?.applyForce(CGVector(dx: 500 * CGFloat(data.acceleration.y), dy: -500 * CGFloat(data.acceleration.x)))
+        spaceShip.physicsBody?.applyForce(CGVector(dx: 250 * CGFloat(data.acceleration.y), dy: -250 * CGFloat(data.acceleration.x)))
         print("other \(data)")
+    }
+    
+    func warpy() {
+        //Creates the warp 
+        if spaceShip.position.x < 0 {
+            spaceShip.position.x = 583
+        } else if spaceShip.position.x > 583 {
+            spaceShip.position.x = 0
+        }
+        if spaceShip.position.y < 0 {
+            spaceShip.position.y = 320
+        } else if spaceShip.position.y > 320{
+            spaceShip.position.y = 0
+        }
     }
     
     func stopUpdates() {
         print("stop updating the data")
         motionManager.stopAccelerometerUpdates()
-    }
-    
-    func borders(side: String) {
-        if side == "down" {
-            spaceShip.position.y = 59
-        } else if side == "up" {
-            spaceShip.position.y = 250
-        }
-        
     }
 }
 
